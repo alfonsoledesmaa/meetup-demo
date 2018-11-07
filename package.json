@@ -1,0 +1,22 @@
+{
+  "name": "api-assignment",
+  "version": "1.0.0",
+  "description": "Node JS API assignment to connect and serve information from https://one.nhtsa.gov ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Node",
+    "API",
+    "Assignment"
+  ],
+  "author": "Alfonso Ledesma",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "joi": "^14.0.4",
+    "underscore": "^1.9.1"
+  }
+}
