@@ -29,8 +29,22 @@ module.exports = {
     res.json(response);
   },
 
-  postVehicles: async (req, res)  => {
-    res.send(req.value['body']);
+  postVehicle: async (req, res)  => {
+
+    const modelYear = req.value['body'].modelYear;
+    const manufacturer = req.value['body'].manufacturer;
+    const model = req.value['body'].model;
+
+    // Resquest to NHTSA API
+    const responseNHTSA = await axios.get(`/modelyear/${modelYear}/make/${manufacturer}/model/${model}?format=json`);
+
+    // User response
+    const response = {
+        Count : responseNHTSA.data.Count,
+        Results: responseNHTSA.data.Results
+    };
+
+    res.json(response);
   }
 };
 

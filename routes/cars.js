@@ -7,6 +7,6 @@ router.route('/:year/:manufacturer/:model')
     .get(CarsController.getVehicle);
 
 router.route('/')
-    .post(validateBody(schemas.vehicleSchema), CarsController.postVehicles);
+    .post(validateBody(schemas.vehicleSchema), CarsController.postVehicle);
 
 module.exports = router;
