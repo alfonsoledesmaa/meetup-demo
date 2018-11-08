@@ -1,3 +1,9 @@
-const express = require('express');
-const router = require('express-promise-router')();
+const axios = require('axios');
+
+module.exports = {
+
+  getVehicles: async (req, res) => {
+    res.send('getVehicles Reached!');
+  }
+};
 
