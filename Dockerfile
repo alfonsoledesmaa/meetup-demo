@@ -1,9 +1,6 @@
 # Pull Node 8 image
 FROM node:8-alpine
 
-# Indicate port to listen
-ENV PORT=300
-
 # Move to working directory
 WORKDIR /usr/src/app
 

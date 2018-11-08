@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  assignment:
+    build:
+      context: .
+    image: alfonsoledesmaa/node-api-assignment
+    container_name: assignment-alfonso
+    ports:
+    - "3000:3000"
+    environment:
+    - PORT=3000
