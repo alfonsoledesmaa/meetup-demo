@@ -47,6 +47,14 @@ module.exports = {
     const manufacturer = req.value['body'].manufacturer;
     const model = req.value['body'].model;
 
+    if(!modelYear || !manufacturer || !model) {
+      const response = {
+        Count: 0,
+        Results: []
+      };
+      return res.json(response);
+    }
+
     // Resquest to NHTSA API
     const responseNHTSA = await axios.get(`/modelyear/${modelYear}/make/${manufacturer}/model/${model}?format=json`);
 
