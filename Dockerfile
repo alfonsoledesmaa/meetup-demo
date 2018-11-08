@@ -4,6 +4,7 @@ FROM node:8-alpine
 # Move to working directory
 WORKDIR /usr/src/app
 
+# Copy dependencies file
 COPY package*.json ./
 
 # Install dependencies
@@ -12,7 +13,5 @@ RUN npm install
 # Copy content from the directory
 COPY . .
 
-# Expose PORT
-EXPOSE 3000
-
+# Command to start the API
 CMD ["npm", "start"]

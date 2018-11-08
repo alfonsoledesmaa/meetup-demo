@@ -2,7 +2,6 @@ const axios = require('axios');
 
 axios.defaults.baseURL = 'https://one.nhtsa.gov/webapi/api/SafetyRatings';
 
-// TODO: Error handles as the assignment requires && delete unnecessary comments
 module.exports = {
 
   getVehicle: async (req, res) => {
@@ -12,23 +11,24 @@ module.exports = {
     const manufacturer = (req.params.manufacturer.replace(/([.*+?^$|(){}\[\]])/mg, '')).trim();
     const model = (req.params.model.replace(/([.*+?^$|(){}\[\]])/mg, '')).trim();
 
+    // Query from the request
     const query = req.query;
 
+    const response = {
+      Count: 0,
+      Results: []
+    };
+
     if(!modelYear || !manufacturer || !model){
-        return res.status(400).json('Bad String');
+        return res.json(response);
     }
 
     // Resquest to NHTSA API
     const responseNHTSA = await axios.get(`/modelyear/${modelYear}/make/${manufacturer}/model/${model}?format=json`);
 
-    console.log(responseNHTSA.config);
-
-
     // User response
-    const response = {
-        Count : responseNHTSA.data.Count,
-        Results: responseNHTSA.data.Results
-    };
+    response.Count = responseNHTSA.data.Count;
+    response.Results = responseNHTSA.data.Results;
 
     if(query.hasOwnProperty('withRating') && query.withRating === 'true') {
        for (let i = 0; i < response.Results.length; i++) {
@@ -47,11 +47,12 @@ module.exports = {
     const manufacturer = req.value['body'].manufacturer;
     const model = req.value['body'].model;
 
-    if(!modelYear || !manufacturer || !model) {
-      const response = {
+    const response = {
         Count: 0,
         Results: []
-      };
+    };
+
+    if(!modelYear || !manufacturer || !model) {
       return res.json(response);
     }
 
@@ -59,15 +60,15 @@ module.exports = {
     const responseNHTSA = await axios.get(`/modelyear/${modelYear}/make/${manufacturer}/model/${model}?format=json`);
 
     // User response
-    const response = {
-        Count : responseNHTSA.data.Count,
-        Results: responseNHTSA.data.Results
-    };
+    response.Count = responseNHTSA.data.Count;
+    response.Results = responseNHTSA.data.Results;
+
 
     res.json(response);
   }
 };
 
+// Request to get crash rating for each vehicle
 const getCrashRating = async vehicleId => {
   const crashRating = await axios.get(`/VehicleId/${vehicleId}?format=json`);
   return crashRating.data.Results[0].OverallRating;
