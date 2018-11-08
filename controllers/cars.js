@@ -10,7 +10,7 @@ GET http://localhost:8888/vehicles/<MODEL YEAR>/<MANUFACTURER>/<MODEL>
 
 module.exports = {
 
-  getVehicles: async (req, res) => {
+  getVehicle: async (req, res) => {
     // Get parameters from request to generate request to API
 
     const modelYear = (req.params.year.replace(/\D/g, '')).trim();
