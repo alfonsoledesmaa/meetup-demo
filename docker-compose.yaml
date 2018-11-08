@@ -6,6 +6,7 @@ services:
       context: .
     image: alfonsoledesmaa/node-api-assignment
     container_name: assignment-alfonso
+    restart: always
     ports:
     - "3000:3000"
     environment:
