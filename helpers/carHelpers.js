@@ -15,9 +15,9 @@ module.exports = {
     },
     schemas: {
         vehicleSchema: {
-            modelYear: Joi.number().required().integer(),
-            manufacturer: Joi.string().required().min(2).max(10),
-            model: Joi.string().required().min(2)
+            modelYear: Joi.number().integer(),
+            manufacturer: Joi.string().min(2).max(10),
+            model: Joi.string().min(2)
         }
     }
 };
