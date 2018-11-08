@@ -14,10 +14,10 @@ module.exports = {
         }
     },
     schemas: {
-        vehicleSchema: {
+        vehicleSchema: Joi.object().keys({
             modelYear: Joi.number().integer(),
             manufacturer: Joi.string().min(2).max(10),
             model: Joi.string().min(2)
-        }
+        })
     }
 };

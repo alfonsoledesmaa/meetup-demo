@@ -1,14 +1,8 @@
 const axios = require('axios');
 
 axios.defaults.baseURL = 'https://one.nhtsa.gov/webapi/api/SafetyRatings';
-/*
-Request Example:
-https://one.nhtsa.gov/webapi/api/SafetyRatings/modelyear/2015/make/Audi/model/A3?format=json
 
-GET http://localhost:8888/vehicles/<MODEL YEAR>/<MANUFACTURER>/<MODEL>
- */
-
-//TODO: Error handles as the assignment requires && delete unnecessary comments
+// TODO: Error handles as the assignment requires && delete unnecessary comments
 module.exports = {
 
   getVehicle: async (req, res) => {
@@ -20,8 +14,15 @@ module.exports = {
 
     const query = req.query;
 
+    if(!modelYear || !manufacturer || !model){
+        return res.status(400).json('Bad String');
+    }
+
     // Resquest to NHTSA API
     const responseNHTSA = await axios.get(`/modelyear/${modelYear}/make/${manufacturer}/model/${model}?format=json`);
+
+    console.log(responseNHTSA.config);
+
 
     // User response
     const response = {
