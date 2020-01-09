@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 // Default route -> Health check
 app.get('/', async(req, res) => {
-    const response  = 'Health check';
+    const response  = 'Health Check Reached';
     res.json(response);
 });
 
