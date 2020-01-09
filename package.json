@@ -14,7 +14,7 @@
   "author": "Alfonso Ledesma",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": ">=0.18.1",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-promise-router": "^3.0.3",
